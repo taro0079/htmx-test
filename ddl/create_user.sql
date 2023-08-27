@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS user (id INT, name VARCHAR(20), email VARCHAR(20));
