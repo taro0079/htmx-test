@@ -24,8 +24,8 @@ func FindByUserId(user_id int64) User {
     return *u
 }
 
-func FindAllUser() {
-    db, _ := sql.Open("mysql", "root@tcp(localhost:3306)/test")
-    rows := db.Query(`select * from user`)
-
-}
+// func FindAllUser() {
+//     db, _ := sql.Open("mysql", "root@tcp(localhost:3306)/test")
+//     rows := db.Query(`select * from user`)
+//
+// }
