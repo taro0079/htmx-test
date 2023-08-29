@@ -19,7 +19,7 @@ type User struct {
 //	    {UserId: "2", Name: "森田文人", Email: "morita0081@gmail.com"},
 //	}
 func getUsers(c *gin.Context) {
-	var users = repository.FindByUserId(1)
+	var users = repository.FindAllUser()
 	c.JSON(http.StatusOK, users)
 
 }
