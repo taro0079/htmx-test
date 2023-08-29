@@ -1,17 +1,38 @@
-<script src="https://unpkg.com/htmx.org@1.8.2"></script>
-<script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
-<script src="https://unpkg.com/mustache@latest"></script>
-<div hx-ext="client-side-templates">
-<!-- have a button POST a click via AJAX -->
-<button hx-get="http://localhost:8080/users" hx-swap="outerHTML" hx-target="#content" mustache-template="users" >
-    SHOW USER
-</button>
-<div id="content"></div>
-<template id="users">
-      <ul>
-        {{#.}}
-        <li>{{UserId}} : {{Name}}</li>
-        {{/.}}
-      </ul>
-</template>
-</div>
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <script src="https://unpkg.com/htmx.org@1.8.2"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+</head>
+<body>
+    <div hx-ext="client-side-templates">
+        <!-- have a button POST a click via AJAX -->
+        <button hx-get="http://localhost:8080/users" hx-swap="outerHTML" hx-target="#content" mustache-template="users" >
+            SHOW USER
+        </button>
+            <div id="content"></div>
+            <template id="users">
+                <ul>
+                    {{#.}}
+                    <li>{{UserId}} : {{Name}}</li>
+                    {{/.}}
+                </ul>
+            </template>
+    </div>
+    <div hx-ext="client-side-templates">
+        <form hx-post="http://localhost:8080/users/new" hx-swap="outerHTML" mustache-template="users" hx-target="#content">
+            <div>
+                <label>User Name</label>
+                <input type="text" value="name" name="name" id="name"/>
+            </div>
+            <div>
+                <label>User Email</label>
+                <input type="email" value="email" name="email" id="email"/>
+            </div>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+
+
+</body>

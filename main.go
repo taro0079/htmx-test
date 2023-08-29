@@ -23,6 +23,18 @@ func getUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, users)
 
 }
+
+func createUser(c *gin.Context)  {
+    u := repository.User {
+        Name: c.PostForm("name"),
+        Email: c.PostForm("email"),
+    }
+    repository.CreateUser(u)
+    users:=repository.FindAllUser()
+    c.JSON(http.StatusOK, users)
+}
+
+
 func main() {
 	router := gin.Default()
     router.Use(cors.New(cors.Config{
@@ -48,5 +60,6 @@ func main() {
         },
     }))
 	router.GET("/users", getUsers)
+    router.POST("/users/new", createUser)
     router.Run(":8080")
 }
