@@ -45,12 +45,13 @@ func CreateUser(u User) int64 {
 	lastInsertUserId, _ := res.LastInsertId()
 	return lastInsertUserId
 }
+
 func DeleteUser(u User) int64 {
 	db, _ := sql.Open("mysql", "root@tcp(localhost:3306)/test")
 	del, _ := db.Prepare("DELETE FROM user WHERE user_id = ?")
-    defer del.Close()
+	defer del.Close()
 
-    res, _ := del.Exec(u.UserId)
-    delId,_ := res.LastInsertId()
-    return delId
+	res, _ := del.Exec(u.UserId)
+	delId, _ := res.LastInsertId()
+	return delId
 }
