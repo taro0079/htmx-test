@@ -1,5 +1,17 @@
 <script src="https://unpkg.com/htmx.org@1.8.2"></script>
+<script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+<script src="https://unpkg.com/mustache@latest"></script>
+<div hx-ext="client-side-templates">
 <!-- have a button POST a click via AJAX -->
-<button hx-post="http://localhost:8000/click" hx-swap="outerHTML">
-  Click Me
+<button hx-get="http://localhost:8080/users" hx-swap="outerHTML" hx-target="#content" mustache-template="users" >
+    SHOW USER
 </button>
+<div id="content"></div>
+<template id="users">
+      <ul>
+        {{#.}}
+        <li>{{UserId}} : {{Name}}</li>
+        {{/.}}
+      </ul>
+</template>
+</div>

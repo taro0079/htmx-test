@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"taro/test/src/repository"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,6 +25,28 @@ func getUsers(c *gin.Context) {
 }
 func main() {
 	router := gin.Default()
+    router.Use(cors.New(cors.Config{
+        AllowOrigins: []string{
+            "*",
+        },
+        AllowMethods: []string{
+            "POST",
+            "GET",
+            "OPTION",
+        },
+        AllowHeaders: []string{
+            "Access-Control-Allow-Credentials",
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin",
+            "Content-Type",
+            "Content-Length",
+            "Accept-Encoding",
+            "Authorization",
+            "hx-current-url",
+            "hx-request",
+            "hx-target",
+        },
+    }))
 	router.GET("/users", getUsers)
-	router.Run()
+    router.Run(":8080")
 }
